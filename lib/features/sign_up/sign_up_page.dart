@@ -1,26 +1,20 @@
-
 import 'package:appfinanceiro/common/constants/app_colors.dart';
 import 'package:appfinanceiro/common/constants/app_text_styles.dart';
 import 'package:appfinanceiro/common/widgets/multiTextButton.dart';
 import 'package:appfinanceiro/common/widgets/primary_button.dart';
-
 import 'package:flutter/material.dart';
 
-class OnboardingPage extends StatelessWidget {
-  const OnboardingPage({super.key});
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Align(
-        child: ListView(
-          physics: const BouncingScrollPhysics(),
-          children: [
-            SizedBox( height: 40,),
-            Image.asset(
-              'assets/images/dimdim.png'
-              ),
-                Text(
+      body: ListView(
+       
+        children: [
+           SizedBox( height: 40,),
+          Text(
                   'Spend Smarter', 
                   textAlign: TextAlign.center,
                   style: AppTextStyles.mediumText.copyWith( 
@@ -33,17 +27,25 @@ class OnboardingPage extends StatelessWidget {
                     color: AppColors.darkGreen,
                       ) , 
                     ),
-                   
-        
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
+                    Image.asset(
+                     'assets/images/login_up.png'
+                     ),
+                        Form(child: Column(
+                        children: [
+                          CustomTextFormField(),
+                           
+                        ],
+                        ),
+                        ),
+                        
+                         Padding(
+                      padding: const EdgeInsets.all(15.0),
                       child: PrimaryButton(
-                      text: 'Get Started',
+                      text: 'Sign Up',
                       onPressed: () {} ,
                       ),
                     ),
-                    SizedBox(height: 10,),
-        
+                    
         
                     MultiTextButton( 
                       onPressed: () => print('hello'),
@@ -58,15 +60,44 @@ class OnboardingPage extends StatelessWidget {
               
         
         
-                      SizedBox(height: 40,),
+                    
+
+
         
-          ],
-        ),
-      ),
+                   
+        ],
+      ) ,
     );
   }
 }
 
+class CustomTextFormField extends StatefulWidget {
+  const CustomTextFormField({
+    Key? key,
+  }) : super(key: key);
 
+  @override
+  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
+}
 
+class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
+final defaultBorder = OutlineInputBorder();
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      decoration: InputDecoration(
+                        
+        labelText: 'Your Name',
+        border: defaultBorder,
+        focusedBorder:defaultBorder,
+        errorBorder: defaultBorder.copyWith(borderSide: BorderSide(color: Colors.red)),
+        focusedErrorBorder: defaultBorder,
+        enabledBorder: defaultBorder,
+        disabledBorder: defaultBorder
+
+      ),
+    );
+  }
+}
